@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Editor from "@monaco-editor/react";
-import { Button } from "@/components/ui/button"
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home'
+
 
 
 function App() {
   const [message, setMessage] = useState("");
-  const [code, setCode] = useState("// Start coding...");
 
   useEffect(() => {
     axios
@@ -18,20 +18,12 @@ function App() {
         console.error("API error:", err);
       });
   }, []);
-
   return (
-    <div className="ml-100">
-      <h1 className="text-5xl text-center font-semibold">Ai code editor</h1> 
-          <Button>Click me</Button>
-
-      <Editor
-        height="90vh"
-        defaultLanguage="javascript"
-        value={code}
-        onChange={(value) => setCode(value)}
-        theme="vs-dark"
-      />
-    </div>
+    <Router>
+      <Routes>
+      <Route path='/' element={<Home/>}></Route>
+      </Routes>
+    </Router>
   );
 }
 
