@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import Editor from "@monaco-editor/react";
 import Terminal from "./Terminal";
 
-const EditorView = ({open,onToggle}) => {
-  const [code, setCode] = useState("// Start coding...");
+const EditorView = ({open,onToggle,setCode,code}) => {
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen border-l-1">
   
       <div className={`transition-all ${open ? "h-3/4" : "h-full"}`}>
         <Editor
