@@ -1,8 +1,10 @@
 from django.urls import path
-from .views import hi
+from . import views
 
 urlpatterns = [
-    path("hi/", hi),
+    path("hi/", views.hi),
+    path("run/", views.run_code, name="run_code"),
+
 
 
 ]

@@ -8,9 +8,9 @@ const LanguageDropDown=({onChange})=>{
                focus:outline-none 
                ">
   <option value="" disabled selected>Select Language</option>
-  <option className="bg-black hover:bg-gray-100 ">Python</option>
-  <option className="bg-black ">JavaScript</option>
-  <option className="bg-black ">C++</option>
+  <option className="bg-black hover:bg-gray-100 ">python</option>
+  <option className="bg-black ">javascript</option>
+  <option className="bg-black ">cpp</option>
 </select>
 
   )

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,8 +41,19 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'corsheaders',
-    'editor'
+    'editor',
+    'realtime'
+    
 ]
+ASGI_APPLICATION = 'backend.asgi.application'
+
+# Channel Layers (Redis configuration)
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',  # Simple in-memory, no Redis needed
+    },
+}
+
 
 MIDDLEWARE = [
 'corsheaders.middleware.CorsMiddleware',
@@ -128,3 +140,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS=True
 
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
