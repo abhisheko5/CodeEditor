@@ -1,6 +1,7 @@
 import {Button} from './ui/button'
 import Terminal from './Terminal.jsx'
 import { ChevronDown, Send, Search } from "lucide-react";
+import axios from 'axios'
 import LanguageDropDown from './languageDropdown.jsx'
 import {
   Menubar,
@@ -13,7 +14,8 @@ import {
 } from "@/components/ui/menubar"
 
 
-const Navbar=({onRun,onChange,handleChange})=>{
+const Navbar=({onRun,onChange,handleChange,handleOpenFile,setOpen})=>{
+
 
   
   return(
@@ -26,6 +28,8 @@ const Navbar=({onRun,onChange,handleChange})=>{
       <MenubarItem>
         New Tab <MenubarShortcut>⌘T</MenubarShortcut>
       </MenubarItem>
+      <MenubarItem onClick={handleOpenFile}>Open File</MenubarItem>
+            <MenubarSeparator />
       <MenubarItem>New Window</MenubarItem>
       <MenubarSeparator />
       <MenubarItem>Share</MenubarItem>
@@ -92,14 +96,11 @@ const Navbar=({onRun,onChange,handleChange})=>{
   <MenubarMenu>
     <MenubarTrigger>Terminal</MenubarTrigger>
     <MenubarContent>
-      <MenubarItem>
-        New Tab <MenubarShortcut>⌘T</MenubarShortcut>
-      </MenubarItem>
-      <MenubarItem>New Window</MenubarItem>
+    
       <MenubarSeparator />
-      <MenubarItem>Share</MenubarItem>
+      <MenubarItem onClick={()=>setOpen(true)}>Open </MenubarItem>
       <MenubarSeparator />
-      <MenubarItem>Print</MenubarItem>
+      <MenubarItem onClick={()=>setOpen(false)}>Close</MenubarItem>
     </MenubarContent>
   </MenubarMenu>
 </Menubar>

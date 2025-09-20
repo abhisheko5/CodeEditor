@@ -1,7 +1,13 @@
 import requests
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from .models import Project,File
+from django.contrib import admin
+
 
 
 @api_view(['GET'])
@@ -49,4 +55,23 @@ def run_code(request):
         return Response({"error": str(e)}, status=500)
 
 
+@api_view(['GET'])
+def open_file(request,file_id):
+    try:
+        file=File.objects.get(id=file_id,is_folder=True)
+        print("file is",file)
+        return Response({"id":file.id,"name":file.name,"content":file.content})
+    
+    except File.DoesNotExist:
+        return Response({"error":"File not found"},status=400)
 
+
+@csrf_exempt
+def save_file(request, file_id):
+    if request.method == "PUT":
+        data = json.loads(request.body)
+        content = data.get("content", "")
+        file = File.objects.get(id=file_id)
+        file.content = content
+        file.save()
+        return JsonResponse({"message": "File saved"})
